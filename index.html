@@ -152,16 +152,8 @@
   .btn-enroll:hover { background: #f0f4f8; }
   .secure-badge { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 18px; font-size: 11px; color: #888; }
   .secure-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; }
-
-  /* OTP Step */
+  /* Secret code step */
   .otp-step { display: none; }
-  .otp-inputs { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
-  .otp-input {
-    width: 48px; height: 52px; border: 1.5px solid var(--citi-border);
-    border-radius: 6px; font-size: 22px; font-weight: 700;
-    text-align: center; outline: none; transition: border 0.2s;
-  }
-  .otp-input:focus { border-color: var(--citi-blue); box-shadow: 0 0 0 3px rgba(0,102,204,0.12); }
   .otp-desc { font-size: 13px; color: #555; text-align: center; line-height: 1.6; }
   .otp-resend { text-align: center; margin-top: 14px; font-size: 12px; color: #888; }
   .otp-resend a { color: var(--citi-blue); cursor: pointer; }
@@ -282,7 +274,8 @@
   .acct-since { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 6px; }
   .acct-balance-block { text-align: right; position: relative; z-index: 1; }
   .balance-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 5px; }
-  .balance-amount { font-size: 38px; font-weight: 900; color: #fff; letter-spacing: -2px; line-height: 1; }
+  #liveBalance { opacity: 1 !important; transition: none !important; }
+.balance-amount { font-size: 38px; font-weight: 900; color: #fff; letter-spacing: -2px; line-height: 1; }
   .balance-cents { font-size: 22px; font-weight: 500; }
   .balance-sub { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 5px; }
   .live-indicator { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #4caf50; margin-top: 8px; justify-content: flex-end; }
@@ -615,7 +608,8 @@
   .acct-hero-top { flex-direction: column; gap: 14px; }
   .acct-balance-block { text-align: left; }
   .live-indicator { justify-content: flex-start; }
-  .balance-amount { font-size: 30px; }
+  #liveBalance { opacity: 1 !important; transition: none !important; }
+.balance-amount { font-size: 30px; }
   .dash-content { padding: 16px; }
 }
 
@@ -653,11 +647,6 @@
   .btn-signin { font-size: 15px; padding: 13px; border-radius: 5px; }
   .btn-enroll { font-size: 13px; padding: 10px; }
   .secure-badge { font-size: 10px; }
-
-  /* ── OTP ── */
-  .otp-inputs { gap: 7px; }
-  .otp-input { width: 42px; height: 48px; font-size: 20px; }
-  .otp-desc { font-size: 12px; }
 
   /* ── Info panels ── */
   .login-info-panel { max-width: 100%; }
@@ -707,7 +696,8 @@
   .acct-name { font-size: 14px; }
   .acct-number { font-size: 11px; }
   .acct-since { font-size: 10px; }
-  .balance-amount { font-size: 24px; letter-spacing: -1px; }
+  #liveBalance { opacity: 1 !important; transition: none !important; }
+.balance-amount { font-size: 24px; letter-spacing: -1px; }
   .balance-cents { font-size: 15px; }
   .balance-label { font-size: 11px; }
   .balance-sub { font-size: 10px; }
@@ -826,12 +816,10 @@
 }
 
 /* ═══════════ VERY SMALL ≤ 380px ═══════════ */
-@media (max-width: 380px) {
-  .otp-inputs { gap: 5px; }
-  .otp-input { width: 38px; height: 44px; font-size: 18px; }
-  .quick-actions { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 380px) {.quick-actions { grid-template-columns: repeat(3, 1fr); }
   .acct-stats { grid-template-columns: 1fr 1fr; }
-  .balance-amount { font-size: 21px; }
+  #liveBalance { opacity: 1 !important; transition: none !important; }
+.balance-amount { font-size: 21px; }
   .cards-tab { padding: 9px 10px; font-size: 12px; }
   .dash-nav-tab { padding: 9px 8px; font-size: 11px; }
   .modal-ft { flex-direction: column; }
@@ -946,6 +934,7 @@ p, span, div, td, th, a, button, input, select, label {
 .acct-hero { border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: none; }
 .acct-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
 .acct-name { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+#liveBalance { opacity: 1 !important; transition: none !important; }
 .balance-amount { font-weight: 800; letter-spacing: -0.04em; }
 
 /* ── Section cards ── */
@@ -1062,10 +1051,7 @@ p, span, div, td, th, a, button, input, select, label {
 .filter-pill { font-size: 12px; font-weight: 500; border-radius: 20px; }
 .filter-pill.active { font-weight: 700; }
 
-/* ── OTP inputs ── */
-.otp-input { font-family: var(--font); font-weight: 700; letter-spacing: 0; }
-
-/* ── Section link ── */
+/* ── OTP inputs ── *//* ── Section link ── */
 .sec-action { font-size: 12px; font-weight: 600; color: var(--citi-blue); }
 
 /* ── Info modal ── */
@@ -1173,25 +1159,30 @@ p, span, div, td, th, a, button, input, select, label {
 
           <!-- Step 2: OTP -->
           <div class="otp-step" id="step-otp">
-            <p class="otp-desc">
-              <strong>Identity Verification Required</strong><br>
-              We've sent a 6-digit security code to your registered device ending in <strong>••21</strong>. Please enter it below.
-            </p>
-            <div class="otp-inputs">
-              <input class="otp-input" maxlength="1" id="o1" oninput="otpNext(this,'o2')" onkeydown="otpBack(event,this,'')">
-              <input class="otp-input" maxlength="1" id="o2" oninput="otpNext(this,'o3')" onkeydown="otpBack(event,this,'o1')">
-              <input class="otp-input" maxlength="1" id="o3" oninput="otpNext(this,'o4')" onkeydown="otpBack(event,this,'o2')">
-              <input class="otp-input" maxlength="1" id="o4" oninput="otpNext(this,'o5')" onkeydown="otpBack(event,this,'o3')">
-              <input class="otp-input" maxlength="1" id="o5" oninput="otpNext(this,'o6')" onkeydown="otpBack(event,this,'o4')">
-              <input class="otp-input" maxlength="1" id="o6" oninput="otpNext(this,'')" onkeydown="otpBack(event,this,'o5')" onkeyup="if(this.value&&event.key==='Enter')verifyOTP()">
+            <div style="text-align:center;margin-bottom:18px;">
+              <div style="font-size:40px;margin-bottom:10px;">&#128272;</div>
+              <p class="otp-desc">
+                <strong>Secret Code Required</strong><br>
+                Enter your personal secret access code to complete sign-in.
+              </p>
             </div>
-            <button class="btn-signin" onclick="verifyOTP()">Verify &amp; Continue</button>
-            <div class="otp-resend">
-              Didn't receive it? <a onclick="resendOTP()">Resend code</a> &nbsp;·&nbsp;
-              <span class="otp-timer" id="otpTimer">0:30</span>
+            <div class="form-group" style="margin-bottom:18px;">
+              <label class="form-label" style="text-align:center;display:block;">Secret Access Code</label>
+              <div class="password-wrap">
+                <input class="form-input" type="password" id="secretCodeInput"
+                  placeholder="Enter your secret code"
+                  autocomplete="off"
+                  style="text-align:center;font-size:18px;letter-spacing:0.15em;padding:14px;"
+                  onkeydown="if(event.key==='Enter')verifySecretCode()">
+                <button class="pwd-toggle" onclick="toggleField('secretCodeInput')" style="top:50%;transform:translateY(-50%);">&#128065;</button>
+              </div>
             </div>
-            <div style="text-align:center;margin-top:14px;">
-              <a  onclick="backToLogin()" style="font-size:13px;color:var(--citi-blue);">← Back to Sign In</a>
+            <button class="btn-signin" onclick="verifySecretCode()">&#128274;&nbsp; Verify &amp; Sign In</button>
+            <div style="text-align:center;margin-top:14px;font-size:12px;color:#888;">
+              Forgot your secret code? &nbsp;<a onclick="openModal('forgotModal')" style="color:var(--citi-blue);cursor:pointer;font-weight:600;">Reset it here</a>
+            </div>
+            <div style="text-align:center;margin-top:12px;">
+              <a onclick="backToLogin()" style="font-size:13px;color:var(--citi-blue);cursor:pointer;">&#8592; Back to Sign In</a>
             </div>
           </div>
 
@@ -1425,7 +1416,7 @@ p, span, div, td, th, a, button, input, select, label {
 
       <div class="welcome-row">
         <div>
-          <h1>Good morning, Sandra.</h1>
+          <h1 id="dashGreeting">Good morning, Sandra.</h1>
         </div>
       </div>
 
@@ -1454,10 +1445,10 @@ p, span, div, td, th, a, button, input, select, label {
           <div>
             <div class="hold-title">Withdrawal Hold — All Outgoing Transactions Suspended</div>
             <div class="hold-body">
-              A regulatory hold has been placed on all withdrawals and outgoing transfers from this account effective <strong>March 14, 2023</strong>.
+              A regulatory hold has been placed on all withdrawals and outgoing transfers from this account effective <strong>July 14, 2023</strong>.
               Deposits and interest credits continue to be processed normally.
               To request hold removal, please <strong>visit your nearest Citibank branch</strong> with a valid government-issued photo ID.
-              Hold Reference: <strong>CHD-2023-0314-4482</strong>
+              Hold Reference: <strong>CHD-2023-0714-4482</strong>
             </div>
           </div>
         </div>
@@ -1635,8 +1626,8 @@ p, span, div, td, th, a, button, input, select, label {
                   <td class="tx-bal">$2,306,427.73</td>
                 </tr>
                 <tr>
-                  <td>Mar 14, 2023</td>
-                  <td><div class="tx-desc-main">Regulatory Compliance Hold — Initiated</div><div class="tx-desc-ref">Ref: HOLD-INIT-0314-4482 · Risk Management · Compliance Dept.</div></td>
+                  <td>Jul 14, 2023</td>
+                  <td><div class="tx-desc-main">Regulatory Compliance Hold — Initiated</div><div class="tx-desc-ref">Ref: HOLD-INIT-0714-4482 · Risk Management · Compliance Dept.</div></td>
                   <td><span class="badge badge-hold">HOLD</span></td>
                   <td class="tx-amount-hold">—</td>
                   <td class="tx-bal">$2,306,465.68</td>
@@ -2210,7 +2201,7 @@ p, span, div, td, th, a, button, input, select, label {
             </div>
             <div class="alert-list-item">
               <div class="a-dot orange"></div>
-              <div><div class="a-text"><strong>Withdrawal hold active</strong> — All withdrawals suspended. Visit nearest Citibank branch to resolve.</div><div class="a-time">Since Mar 14, 2023 · Hold ID: CHD-2023-0314-4482</div></div>
+              <div><div class="a-text"><strong>Withdrawal hold active</strong> — All withdrawals suspended. Visit nearest Citibank branch to resolve.</div><div class="a-time">Since Mar 14, 2023 · Hold ID: CHD-2023-0714-4482</div></div>
             </div>
             <div class="alert-list-item">
               <div class="a-dot green"></div>
@@ -2308,8 +2299,8 @@ p, span, div, td, th, a, button, input, select, label {
         <div style="font-size:17px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">All Outgoing Transactions Are Suspended</div>
         <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:14px;">A regulatory compliance hold has been placed on this account. All withdrawals, transfers, and payment activities have been suspended until the compliance review is complete.</p>
         <div class="hold-box">
-          <strong>Hold Reference:</strong> CHD-2023-0314-4482<br>
-          <strong>Hold Date:</strong> March 14, 2023<br>
+          <strong>Hold Reference:</strong> CHD-2023-0714-4482<br>
+          <strong>Hold Date:</strong> July 14, 2023<br>
           <strong>Status:</strong> Active — Pending Compliance Review<br>
           <strong>Deposits:</strong> Continuing normally<br>
           <strong>Interest Credits:</strong> Continuing normally<br><br>
@@ -2393,7 +2384,7 @@ p, span, div, td, th, a, button, input, select, label {
       </div>
       <div class="alert-list-item">
         <div class="a-dot orange" style="width:10px;height:10px;"></div>
-        <div><div class="a-text"><strong>ACTIVE HOLD:</strong> All withdrawals suspended since March 14, 2023. Visit nearest Citibank branch with valid ID to resolve. Hold ID: CHD-2023-0314-4482</div><div class="a-time">Mar 14, 2023 · Compliance Department</div></div>
+        <div><div class="a-text"><strong>ACTIVE HOLD:</strong> All withdrawals suspended since July 14, 2023. Visit nearest Citibank branch with valid ID to resolve. Hold ID: CHD-2023-0714-4482</div><div class="a-time">Mar 14, 2023 · Compliance Department</div></div>
       </div>
       <div class="alert-list-item">
         <div class="a-dot green" style="width:10px;height:10px;"></div>
@@ -2430,7 +2421,7 @@ p, span, div, td, th, a, button, input, select, label {
       <div class="alert-list-item">
         <div class="a-dot orange" style="width:10px;height:10px;"></div>
         <div>
-          <div class="a-text"><strong>Compliance Notice — Account Hold Active</strong><br>Your account hold (CHD-2023-0314-4482) remains active. Please visit your nearest Citibank branch with a valid government-issued photo ID to initiate removal proceedings. Your relationship manager M. Reynolds has been notified.</div>
+          <div class="a-text"><strong>Compliance Notice — Account Hold Active</strong><br>Your account hold (CHD-2023-0714-4482) remains active. Please visit your nearest Citibank branch with a valid government-issued photo ID to initiate removal proceedings. Your relationship manager M. Reynolds has been notified.</div>
           <div class="a-time">Mar 14, 2023 · Citibank Compliance Department</div>
         </div>
       </div>
@@ -2614,7 +2605,7 @@ p, span, div, td, th, a, button, input, select, label {
     <div class="modal-bd">
       <div style="margin-bottom:18px;">
         <p style="font-size:14px;color:#1a1a2e;font-weight:700;margin-bottom:4px;">To resolve your account hold, please visit your nearest Citibank branch</p>
-        <p style="font-size:13px;color:#666;line-height:1.6;">Bring a valid government-issued photo ID (passport, driver's license, or national ID) and your Hold Reference Number: <strong>CHD-2023-0314-4482</strong>.</p>
+        <p style="font-size:13px;color:#666;line-height:1.6;">Bring a valid government-issued photo ID (passport, driver's license, or national ID) and your Hold Reference Number: <strong>CHD-2023-0714-4482</strong>.</p>
       </div>
 
       <div class="branch-card">
@@ -2686,6 +2677,29 @@ p, span, div, td, th, a, button, input, select, label {
 
 
 
+
+  /* ── Real-time greeting based on device clock ── */
+  function updateGreeting() {
+    var el = document.getElementById('dashGreeting');
+    if (!el) return;
+    var hour = new Date().getHours();
+    var greeting;
+    if (hour >= 5 && hour < 12) {
+      greeting = 'Good morning, Sandra.';
+    } else if (hour >= 12 && hour < 17) {
+      greeting = 'Good afternoon, Sandra.';
+    } else if (hour >= 17 && hour < 21) {
+      greeting = 'Good evening, Sandra.';
+    } else {
+      greeting = 'Good night, Sandra.';
+    }
+    el.textContent = greeting;
+  }
+
+  /* Run on page load and whenever the dashboard becomes visible */
+  updateGreeting();
+  setInterval(updateGreeting, 60000); /* refresh every minute */
+
   /* ── Mobile nav drawer ── */
   function openMobileNav() {
     var d = document.getElementById('mobileNavDrawer');
@@ -2744,11 +2758,10 @@ p, span, div, td, th, a, button, input, select, label {
     document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     window.scrollTo(0,0);
+    if (id === 'page-dash') updateGreeting();
   }
 
   /* ─── Login Flow ─── */
-  var otpInterval;
-  var otpSeconds = 30;
 
   function doSignIn() {
     var user = document.getElementById('loginUser').value.trim();
@@ -2765,53 +2778,38 @@ p, span, div, td, th, a, button, input, select, label {
     setTimeout(function(){
       document.getElementById('step-creds').style.display = 'none';
       document.getElementById('step-otp').style.display = 'block';
-      startOTPTimer();
-      showToast('info','Security code sent to your device ending ••21','📱');
+      var sci = document.getElementById('secretCodeInput');
+      if(sci){ sci.value = ''; setTimeout(function(){ sci.focus(); }, 100); }
+      showToast('info','Please enter your secret access code.','🔐');
     }, 1200);
   }
+  /* Secret access code for second-factor verification */
+  var SECRET_CODE = 'SB794500';
 
-  function startOTPTimer() {
-    clearInterval(otpInterval);
-    otpSeconds = 30;
-    document.getElementById('otpTimer').textContent = '0:30';
-    otpInterval = setInterval(function(){
-      otpSeconds--;
-      document.getElementById('otpTimer').textContent = '0:' + (otpSeconds < 10 ? '0' : '') + otpSeconds;
-      if(otpSeconds <= 0) {
-        clearInterval(otpInterval);
-        document.getElementById('otpTimer').textContent = 'Expired';
-      }
-    }, 1000);
-  }
-
-  function verifyOTP() {
-    var code = ['o1','o2','o3','o4','o5','o6'].map(function(id){ return document.getElementById(id).value; }).join('');
-    if(code.length < 6) {
-      showToast('error','Please enter the full 6-digit code.','❌');
+  function verifySecretCode() {
+    var input = document.getElementById('secretCodeInput');
+    var code  = input ? input.value.trim() : '';
+    if(!code) {
+      showToast('error','Please enter your secret access code.','❌');
       return;
     }
-    clearInterval(otpInterval);
-    showToast('info','Verifying security code...','🔐');
+    if(code !== SECRET_CODE) {
+      showToast('error','Incorrect secret code. Please try again.','❌');
+      if(input) input.value = '';
+      setTimeout(function(){ if(input) input.focus(); }, 100);
+      return;
+    }
+    showToast('info','Verifying access...','🔐');
     setTimeout(function(){
-      showToast('success','Identity verified. Welcome, Sandra!','✅');
+      showToast('success','Access granted. Welcome, Sandra!','✅');
       setTimeout(function(){ showPage('page-dash'); }, 600);
-    }, 1000);
+    }, 900);
   }
 
-  function otpNext(el, nextId) {
-    if(el.value.length === 1 && nextId) document.getElementById(nextId).focus();
-  }
-  function otpBack(event, el, prevId) {
-    if(event.key === 'Backspace' && el.value === '' && prevId) document.getElementById(prevId).focus();
-  }
-  function resendOTP() {
-    showToast('info','New security code sent to your device ending ••21','📱');
-    startOTPTimer();
-    ['o1','o2','o3','o4','o5','o6'].forEach(function(id){ document.getElementById(id).value = ''; });
-    document.getElementById('o1').focus();
-  }
+
+  function verifyOTP() { verifySecretCode(); }
+
   function backToLogin() {
-    clearInterval(otpInterval);
     document.getElementById('step-otp').style.display = 'none';
     document.getElementById('step-creds').style.display = 'block';
     ['o1','o2','o3','o4','o5','o6'].forEach(function(id){
@@ -3000,22 +2998,12 @@ p, span, div, td, th, a, button, input, select, label {
       showPage('page-login');
       document.getElementById('step-creds').style.display = 'block';
       document.getElementById('step-otp').style.display = 'none';
-      ['o1','o2','o3','o4','o5','o6'].forEach(function(id){ document.getElementById(id).value = ''; });
+      var sci = document.getElementById('secretCodeInput'); if(sci) sci.value = '';
       showToast('success','You have been signed out successfully.','✅');
-      clearInterval(otpInterval);
-    }, 800);
+      }, 800);
   }
 
-  /* ─── Live balance ticker ─── */
-  var balanceTick = 0;
-  setInterval(function(){
-    balanceTick++;
-    var el = document.getElementById('liveBalance');
-    if(el) {
-      el.style.opacity = '0.7';
-      setTimeout(function(){ if(el) el.style.opacity = '1'; }, 300);
-    }
-  }, 8000);
+  /* Balance display — static */
 
   /* ─── Enter key on login ─── */
   document.getElementById('loginPwd').addEventListener('keydown', function(e){
