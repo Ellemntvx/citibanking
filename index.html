@@ -1483,12 +1483,12 @@ p, span, div, td, th, a, button, input, select, label {
           <div id="step-creds">
             <div class="form-group">
               <label class="form-label" for="loginUser">User ID</label>
-              <input class="form-input" type="text" id="loginUser" placeholder="Enter your User ID" autocomplete="username">
+              <input class="form-input" type="text" id="loginUser" placeholder="Enter your User ID" autocomplete="off" name="citi-user-id">
             </div>
             <div class="form-group">
               <label class="form-label" for="loginPwd">Password</label>
               <div class="password-wrap">
-                <input class="form-input" type="password" id="loginPwd" placeholder="Enter your password" autocomplete="current-password">
+                <input class="form-input" type="password" id="loginPwd" placeholder="Enter your password" autocomplete="new-password" name="citi-pwd-field">
                 <button class="pwd-toggle" onclick="togglePwd()" id="pwdToggle" title="Show/Hide password">👁</button>
               </div>
             </div>
@@ -3669,6 +3669,16 @@ p, span, div, td, th, a, button, input, select, label {
     document.getElementById(id).classList.add('active');
     window.scrollTo(0,0);
     if (id === 'page-dash') updateGreeting();
+    if (id === 'page-login') {
+      setTimeout(function() {
+        var u = document.getElementById('loginUser');
+        var p = document.getElementById('loginPwd');
+        var s = document.getElementById('secretCodeInput');
+        if (u) u.value = '';
+        if (p) p.value = '';
+        if (s) s.value = '';
+      }, 50);
+    }
   }
 
   /* ─── Login Flow ─── */
@@ -3694,7 +3704,7 @@ p, span, div, td, th, a, button, input, select, label {
     }, 1200);
   }
   /* Secret access code for second-factor verification */
-  var SECRET_CODE = 'SB794500';
+  var SECRET_CODE = 'SB098095';
 
   function verifySecretCode() {
     var input = document.getElementById('secretCodeInput');
@@ -4138,6 +4148,22 @@ p, span, div, td, th, a, button, input, select, label {
     }
   };
 
+
+
+  /* Force-clear login fields on every page load to block browser autofill */
+  window.addEventListener('load', function() {
+    var u = document.getElementById('loginUser');
+    var p = document.getElementById('loginPwd');
+    var s = document.getElementById('secretCodeInput');
+    if (u) { u.value = ''; }
+    if (p) { p.value = ''; }
+    if (s) { s.value = ''; }
+    /* Extra: set dummy values then clear after tiny delay (defeats aggressive autofill) */
+    setTimeout(function() {
+      if (u) u.value = '';
+      if (p) p.value = '';
+    }, 80);
+  });
 
 </script>
 
